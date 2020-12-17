@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Hussein Al Bayati</Authors>
+    <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
+    <PackageProjectUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Dependency Injection, Concurrency, Multi-threading, BackgroundService</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
