@@ -81,7 +81,6 @@ namespace MyMiddleware
         private void Scheduler_ServiceIsDue(object sender, ServiceSchedulerEventArgs e)
         {
             _logger.LogInformation("Service triggered at: {time}", DateTimeOffset.Now);
-
         }
     }
 }
