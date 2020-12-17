@@ -39,8 +39,6 @@ namespace MyMiddleware
                         // pass the service configuration file (details on this can be found under https://github.com/H7O/Com.H.Threading.Scheduler project
                         options.ConfigPath = Directory.GetCurrentDirectory()
                         + Path.DirectorySeparatorChar
-                        + "config"
-                        + Path.DirectorySeparatorChar
                         + "tasks.xml";
                     });
                 });
