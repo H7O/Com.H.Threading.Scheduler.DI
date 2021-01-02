@@ -37,11 +37,7 @@ namespace MyMiddleware
                     services.AddSchedulerService((options) => // add the scheduler to services DI pipeline
                     {
                         // pass the service configuration file (details on this can be found under https://github.com/H7O/Com.H.Threading.Scheduler project
-                        options.ConfigPath = Directory.GetCurrentDirectory()
-                        + Path.DirectorySeparatorChar
-                        + "config"
-                        + Path.DirectorySeparatorChar
-                        + "tasks.xml";
+                        options.ConfigPath = Path.Combine(Directory.GetCurrentDirectory(), "tasks.xml");
                     });
                 });
     }
@@ -83,7 +79,6 @@ namespace MyMiddleware
         private void Scheduler_ServiceIsDue(object sender, ServiceSchedulerEventArgs e)
         {
             _logger.LogInformation("Service triggered at: {time}", DateTimeOffset.Now);
-
         }
     }
 }
