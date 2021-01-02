@@ -72,11 +72,11 @@ namespace MyMiddleware
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            this._scheduler.IsDue += Scheduler_ServiceIsDue;
+            this._scheduler.IsDue += Scheduler_TaskIsDue;
             await this._scheduler.Start(stoppingToken);
         }
 
-        private void Scheduler_ServiceIsDue(object sender, ServiceSchedulerEventArgs e)
+        private void Scheduler_TaskIsDue(object sender, HTaskSchedulerEventArgs e)
         {
             _logger.LogInformation("Service triggered at: {time}", DateTimeOffset.Now);
         }
