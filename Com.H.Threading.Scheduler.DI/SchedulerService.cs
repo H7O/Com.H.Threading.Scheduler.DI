@@ -12,14 +12,14 @@ namespace Com.H.Threading.Scheduler
     {
         private readonly SchedulerServiceOptions serviceOptions;
 
-        private readonly ServiceScheduler _scheduler;
+        private readonly HTaskScheduler _scheduler;
         public SchedulerService(IOptions<SchedulerServiceOptions> schedulerServiceOptionsAccessor)
         {
             if (schedulerServiceOptionsAccessor == null) 
                 throw new System.ArgumentNullException(nameof(schedulerServiceOptionsAccessor));
             this.serviceOptions = schedulerServiceOptionsAccessor.Value;
             if (string.IsNullOrEmpty(this.serviceOptions.ConfigPath)) throw new System.ArgumentNullException(nameof(serviceOptions.ConfigPath));
-            this._scheduler = new ServiceScheduler(this.serviceOptions.ConfigPath);
+            this._scheduler = new HTaskScheduler(this.serviceOptions.ConfigPath);
             if (this.serviceOptions.TickInterval > 0) this._scheduler.TickInterval = (int) this.serviceOptions.TickInterval;
         }
 
@@ -27,22 +27,22 @@ namespace Com.H.Threading.Scheduler
         /// <summary>
         /// Gets triggered whenever a service is due for execution
         /// </summary>
-        public event Com.H.Threading.Scheduler.ServiceScheduler.ServiceIsDueEventHandler IsDue
+        public event Com.H.Threading.Scheduler.HTaskScheduler.TaskIsDueEventHandler IsDue
         {
             add
             {
-                this._scheduler.ServiceIsDue += value;
+                this._scheduler.TaskIsDue += value;
             }
             remove
             {
-                this._scheduler.ServiceIsDue -= value;
+                this._scheduler.TaskIsDue -= value;
             }
         }
 
         /// <summary>
         /// Gets triggered whenever there is an error that might get supressed if retry on error is enabled
         /// </summary>
-        public event Com.H.Threading.Scheduler.ServiceScheduler.ErrorEventHandler Error
+        public event Com.H.Threading.Scheduler.HTaskScheduler.ErrorEventHandler Error
         {
             add
             {
