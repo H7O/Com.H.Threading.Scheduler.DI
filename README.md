@@ -2,7 +2,7 @@
 Dependency injection extension for [Com.H.Threading.Scheduler](https://github.com/H7O/Com.H.Threading.Scheduler) API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline
 
 ## Installation
-The easiest way to install this package is via Nuget [https://www.nuget.org/packages?q=Com.H.Threading.Scheduler.DI](https://www.nuget.org/packages?q=Com.H.Threading.Scheduler.DI).
+The easiest way to install this package is via Nuget [https://www.nuget.org/packages/Com.H.Threading.Scheduler.DI/](https://www.nuget.org/packages/Com.H.Threading.Scheduler.DI/).
 Alternatively, you can compile this git repository and reference the output dll directly in your application.
 
 ## Usage
@@ -72,11 +72,11 @@ namespace MyMiddleware
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            this._scheduler.IsDue += Scheduler_ServiceIsDue;
+            this._scheduler.IsDue += Scheduler_TaskIsDue;
             await this._scheduler.Start(stoppingToken);
         }
 
-        private void Scheduler_ServiceIsDue(object sender, ServiceSchedulerEventArgs e)
+        private void Scheduler_TaskIsDue(object sender, HTaskSchedulerEventArgs e)
         {
             _logger.LogInformation("Service triggered at: {time}", DateTimeOffset.Now);
         }
