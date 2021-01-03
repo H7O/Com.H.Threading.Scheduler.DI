@@ -18,7 +18,7 @@ namespace Com.H.Threading.Scheduler
             if (schedulerServiceOptionsAccessor == null) 
                 throw new System.ArgumentNullException(nameof(schedulerServiceOptionsAccessor));
             this.serviceOptions = schedulerServiceOptionsAccessor.Value;
-            if (string.IsNullOrEmpty(this.serviceOptions.ConfigPath)) throw new System.ArgumentNullException(nameof(serviceOptions.ConfigPath));
+            if (string.IsNullOrEmpty(this.serviceOptions.ConfigPath)) throw new System.NullReferenceException("missing serviceOptions.ConfigPath");
             this._scheduler = new HTaskScheduler(this.serviceOptions.ConfigPath);
             if (this.serviceOptions.TickInterval > 0) this._scheduler.TickInterval = (int) this.serviceOptions.TickInterval;
         }
