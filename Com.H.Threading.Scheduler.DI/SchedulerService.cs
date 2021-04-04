@@ -15,15 +15,17 @@ namespace Com.H.Threading.Scheduler
         private readonly HTaskScheduler _scheduler;
         public SchedulerService(IOptions<SchedulerServiceOptions> schedulerServiceOptionsAccessor)
         {
-            if (schedulerServiceOptionsAccessor == null) 
-                throw new System.ArgumentNullException(nameof(schedulerServiceOptionsAccessor));
+            if (schedulerServiceOptionsAccessor == null) return;
+                //throw new System.ArgumentNullException(nameof(schedulerServiceOptionsAccessor));
+
+            //if(schedulerServiceOptionsAccessor != null) throw new Exception("ok!!!!!!");
             this.serviceOptions = schedulerServiceOptionsAccessor.Value;
             if (string.IsNullOrEmpty(this.serviceOptions.ConfigPath)) throw new System.NullReferenceException("missing serviceOptions.ConfigPath");
             this._scheduler = new HTaskScheduler(this.serviceOptions.ConfigPath);
-            if (this.serviceOptions.TickInterval > 0) this._scheduler.TickInterval = (int) this.serviceOptions.TickInterval;
-            if (this.serviceOptions.ValueProcessors != null)
-                foreach (var vp in this.serviceOptions.ValueProcessors)
-                    this._scheduler.Tasks.ValueProcessors.TryAdd(vp.Key, vp.Value);
+            if (this.serviceOptions?.TickInterval > 0) this._scheduler.TickInterval = (int) this.serviceOptions.TickInterval;
+            if (this.serviceOptions?.ValueProcessors != null)
+                foreach (var vp in this.serviceOptions?.ValueProcessors)
+                    this._scheduler?.Tasks?.ValueProcessors?.TryAdd(vp.Key, vp.Value);
         }
 
         

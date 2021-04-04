@@ -8,7 +8,7 @@ namespace Com.H.Threading.Scheduler
     {
         public static void AddSchedulerService(this IServiceCollection services)
         {
-            services.TryAddSingleton<SchedulerService, SchedulerService>();
+            services.TryAddSingleton<ISchedulerService, SchedulerService>();
         }
 
         public static void AddSchedulerService(this IServiceCollection services, 
