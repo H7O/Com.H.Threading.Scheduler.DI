@@ -12,12 +12,12 @@
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <Copyright>Hussein Al Bayati</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.3</Version>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <Version>1.0.4</Version>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Com.H.Threading.Scheduler" Version="1.0.8" />
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="1.0.9" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
   </ItemGroup>
 
