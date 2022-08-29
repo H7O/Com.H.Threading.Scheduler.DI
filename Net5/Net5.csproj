@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Com.H.Threading.Scheduler.DI</AssemblyName>
+    <RootNamespace>Com.H.Threading.Scheduler.DI</RootNamespace>
+    <ApplicationIcon>../128x128.ico</ApplicationIcon>
+    <Version>5.0.0.1</Version>
+    <Authors>Hussein Al Bayati</Authors>
+    <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
+    <Copyright>Hussein Al Bayati</Copyright>
+    <PackageProjectUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</PackageProjectUrl>
+    <PackageIcon>../128x128.jpg</PackageIcon>
+    <PackageReadmeFile>nuget.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Dependency Injection, Concurrency, Multi-threading, BackgroundService, Containerized</PackageTags>
+    <PackageReleaseNotes>Maintenance release</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Com.H">
+      <HintPath>..\..\Com.H\Net5\bin\Release\net5.0\Com.H.dll</HintPath>
+    </Reference>
+    <Reference Include="Com.H.Threading.Scheduler">
+      <HintPath>..\..\Com.H.Threading.Scheduler\Net5\bin\Release\net5.0\Com.H.Threading.Scheduler.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
