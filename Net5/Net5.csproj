@@ -4,13 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Com.H.Threading.Scheduler.DI</AssemblyName>
     <RootNamespace>Com.H.Threading.Scheduler.DI</RootNamespace>
-    <ApplicationIcon>../128x128.ico</ApplicationIcon>
+    <ApplicationIcon>128x128.ico</ApplicationIcon>
     <Version>5.0.0.1</Version>
     <Authors>Hussein Al Bayati</Authors>
     <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
     <Copyright>Hussein Al Bayati</Copyright>
     <PackageProjectUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</PackageProjectUrl>
-    <PackageIcon>../128x128.jpg</PackageIcon>
+    <PackageIcon>128x128.jpg</PackageIcon>
     <PackageReadmeFile>nuget.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -20,6 +20,23 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="128x128.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../128x128.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="../nuget.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
