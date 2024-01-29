@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Com.H.Threading.Scheduler.DI</AssemblyName>
+    <RootNamespace>Com.H.Threading.Scheduler.DI</RootNamespace>
+    <ApplicationIcon>128x128.ico</ApplicationIcon>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <Version>8.0.0.0</Version>
+    <Authors>Hussein Al Bayati</Authors>
+    <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
+    <Copyright>Hussein Al Bayati</Copyright>
+    <PackageProjectUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</PackageProjectUrl>
+    <PackageIcon>128x128.jpg</PackageIcon>
+    <PackageReadmeFile>nuget.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Dependency Injection, Concurrency, Multi-threading, BackgroundService, Containerized</PackageTags>
+    <PackageReleaseNotes>Maintenance release</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="128x128.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="128x128.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\128x128.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\nuget.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Com.H" Version="8.0.0" />
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
