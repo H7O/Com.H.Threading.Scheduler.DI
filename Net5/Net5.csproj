@@ -39,16 +39,8 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="5.0.17.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Com.H">
-      <HintPath>..\..\Com.H\Net5\bin\Release\net5.0\Com.H.dll</HintPath>
-    </Reference>
-    <Reference Include="Com.H.Threading.Scheduler">
-      <HintPath>..\..\Com.H.Threading.Scheduler\Net5\bin\Release\net5.0\Com.H.Threading.Scheduler.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
