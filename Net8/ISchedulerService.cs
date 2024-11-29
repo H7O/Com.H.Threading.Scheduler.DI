@@ -1,3 +1,4 @@
+using Com.H.Events;
 using Com.H.Threading.Scheduler;
 using System.Collections.Generic;
 using System.Threading;
@@ -8,12 +9,11 @@ namespace Com.H.Threading.Scheduler
 {
     public interface ISchedulerService
     {
-        
-        event Com.H.Threading.Scheduler.HTaskScheduler.TaskIsDueEventHandler? IsDue;
-        event Com.H.Threading.Scheduler.HTaskScheduler.TaskExecutionErrorEventHandler? TaskExceptionError;
-        event Com.H.Events.HErrorEventHandler? TaskLoadingError;
+        event AsyncEventHandler<HTaskEventArgs> IsDue;
+        event AsyncEventHandler<HTaskExecutionErrorEventArgs> TaskExceptionError;
+        event AsyncEventHandler<HErrorEventArgs> TaskLoadingError;
 
-        Task Start(CancellationToken cancellationToken);
+        Task StartAsync(CancellationToken? cancellationToken = null);
         void Stop();
 
 

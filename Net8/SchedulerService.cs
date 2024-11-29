@@ -5,12 +5,15 @@ using Com.H.Threading.Scheduler;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Com.H.Events;
 
 namespace Com.H.Threading.Scheduler
 {
     public class SchedulerService : ISchedulerService
     {
         private readonly SchedulerServiceOptions? serviceOptions;
+
+        public HTaskScheduler? BaseScheduler => this._scheduler;
 
         private readonly HTaskScheduler? _scheduler;
         public SchedulerService(IOptions<SchedulerServiceOptions> schedulerServiceOptionsAccessor)
@@ -30,7 +33,7 @@ namespace Com.H.Threading.Scheduler
         /// <summary>
         /// Gets triggered whenever a service is due for execution
         /// </summary>
-        public event Com.H.Threading.Scheduler.HTaskScheduler.TaskIsDueEventHandler? IsDue
+        public event AsyncEventHandler<HTaskEventArgs> IsDue
         {
             add
             {
@@ -47,7 +50,7 @@ namespace Com.H.Threading.Scheduler
         /// <summary>
         /// Gets triggered whenever there is an error that might get supressed when retry-on-error is enabled
         /// </summary>
-        public event Com.H.Threading.Scheduler.HTaskScheduler.TaskExecutionErrorEventHandler? TaskExceptionError
+        public event AsyncEventHandler<HTaskExecutionErrorEventArgs> TaskExceptionError
         {
             add
             {
@@ -65,7 +68,7 @@ namespace Com.H.Threading.Scheduler
         /// <summary>
         /// Gets triggered whenever there is an error loading new tasks from storage (XML, DB, custom..) into memory
         /// </summary>
-        public event Com.H.Events.HErrorEventHandler? TaskLoadingError
+        public event AsyncEventHandler<HErrorEventArgs> TaskLoadingError
         {
             add
             {
@@ -85,9 +88,11 @@ namespace Com.H.Threading.Scheduler
         /// </summary>
         /// <param name="cancellationToken">If provided, the monitoring force stops all running services</param>
         /// <returns>a running monitoring task</returns>
-        public Task Start(CancellationToken cancellationToken)
-            => this._scheduler is null?Task.CompletedTask
-            : this._scheduler.Start(cancellationToken);
+        public async Task StartAsync(CancellationToken? cancellationToken = null)
+        {
+            if (this._scheduler is null) return;
+            await this._scheduler.StartAsync(cancellationToken);
+        }
 
         /// <summary>
         /// Stops monitoring services schedule, and terminates running services.
