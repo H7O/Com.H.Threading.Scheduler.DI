@@ -8,7 +8,7 @@
     <RootNamespace>Com.H.Threading.Scheduler.DI</RootNamespace>
     <ApplicationIcon>128x128.ico</ApplicationIcon>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
-    <Version>8.0.0.3</Version>
+    <Version>8.0.0.4</Version>
     <Authors>Hussein Al Bayati</Authors>
     <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
     <Copyright>Hussein Al Bayati</Copyright>
