@@ -6,17 +6,18 @@ namespace Com.H.Threading.Scheduler
 {
     public static class SchedulerServiceCollectionExtensions
     {
-        public static void AddSchedulerService(this IServiceCollection services)
+        public static IServiceCollection AddSchedulerService(this IServiceCollection services)
         {
             services.TryAddSingleton<ISchedulerService, SchedulerService>();
-            // services.AddSingleton<SchedulerService>();
+            return services;
         }
 
-        public static void AddSchedulerService(this IServiceCollection services, 
+        public static IServiceCollection AddSchedulerService(this IServiceCollection services, 
             Action<SchedulerServiceOptions> setupAction)
         {
             services.AddSchedulerService();
             services.Configure(setupAction);
+            return services;
         }
     }
 }
