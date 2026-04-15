@@ -41,7 +41,8 @@
   <ItemGroup>
     <PackageReference Include="Com.H" Version="[10.1.0, 10.2.0)" />
     <PackageReference Include="Com.H.Threading.Scheduler" Version="[10.0.1, 10.1.0)" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.103" PrivateAssets="All" />
   </ItemGroup>
 
