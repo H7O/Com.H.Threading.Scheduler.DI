@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>Com.H.Threading.Scheduler.DI</AssemblyName>
     <RootNamespace>Com.H.Threading.Scheduler.DI</RootNamespace>
-    <ApplicationIcon>128x128.ico</ApplicationIcon>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
-    <Version>6.0.0.2</Version>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <Version>10.0.0</Version>
     <Authors>Hussein Al Bayati</Authors>
     <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
     <Copyright>Hussein Al Bayati</Copyright>
@@ -25,10 +27,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="128x128.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\128x128.jpg">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -39,10 +37,12 @@
     </None>
   </ItemGroup>
 
+
   <ItemGroup>
-    <PackageReference Include="Com.H" Version="6.0.2.5" />
-    <PackageReference Include="Com.H.Threading.Scheduler" Version="6.0.6.4" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="Com.H" Version="10.1.0" />
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="[10.0.1, 10.1.0)" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.6" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.103" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
