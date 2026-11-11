@@ -378,12 +378,14 @@ IEnumerable<string?>? allValues = e.GetValues("config/database");
 
 ## Retry on error
 
-The scheduler can automatically retry a task when it throws an exception, with configurable attempt limits and delay between retries.
+A task that throws is not finished, so the scheduler tries it again. It waits between tries, and you can limit how many there are.
 
 | Tag | Description | Format |
 |-----|-------------|--------|
-| `retry_attempts_on_error` | Maximum number of retry attempts | Positive integer |
-| `sleep_on_error` | Milliseconds to wait before retrying | Positive integer (ms) |
+| `sleep_on_error` | Milliseconds to wait before trying again. Without it, a task waits its `interval`, and a task with no interval waits 60 seconds (the `DefaultSleepOnError` option of `AddSchedulerService`). | Positive integer (ms) |
+| `retry_attempts_on_error` | How many more times a failed run is tried. Without it there is no limit. `0` means no retries. | Integer, 0 or more |
+
+When the tries are used up, the scheduler gives up on that run and treats the task as it treats one that succeeded: it waits for its next scheduled time (the next interval, or the next day for a task without one), and starts that run with a full count again.
 
 ### Example 6 — Retry a failing task
 
@@ -430,7 +432,11 @@ private async Task _scheduler_IsDue(
 }
 ```
 
-When retry is enabled, exceptions are **suppressed** from the caller and the `TaskExceptionError` event is raised instead. The error count resets to zero after a successful execution.
+In this example a failing call is made at most 4 times, 5 seconds apart: the first try and 3 retries. Then the task waits for its next interval.
+
+An exception thrown by your handler never leaves the scheduler: the `TaskExceptionError` event is raised for it, whether or not the task has retry settings. The error count resets to zero after a successful execution.
+
+> **Changed in 10.2.0.** Before, a task that threw was tried again on every tick (every second by default) unless both tags were set, `sleep_on_error` was ignored without `retry_attempts_on_error`, and a task that used up its tries did not run again. If you relied on the every-tick retry, set `<sleep_on_error>` to your tick interval.
 
 ---
 
@@ -781,7 +787,7 @@ The scheduler exposes three async events via `ISchedulerService`:
 | Event | EventArgs Type | When |
 |-------|---------------|------|
 | `IsDue` | `HTaskEventArgs` | A task meets all scheduling criteria |
-| `TaskExceptionError` | `HTaskExecutionErrorEventArgs` | A task throws an exception (when retry is configured) |
+| `TaskExceptionError` | `HTaskExecutionErrorEventArgs` | A task throws an exception |
 | `TaskLoadingError` | `HErrorEventArgs` | XML config file fails to parse or load |
 
 ### Example 11 — Handling loading and execution errors

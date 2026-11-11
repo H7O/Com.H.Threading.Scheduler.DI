@@ -29,10 +29,14 @@ namespace Com.H.Threading.Scheduler
 
             this._scheduler = new HTaskScheduler(this.serviceOptions.ConfigPath);
             if (this.serviceOptions.TickInterval > 0) this._scheduler.TickInterval = (int) this.serviceOptions.TickInterval;
+            if (this.serviceOptions.DefaultSleepOnError > 0) this._scheduler.DefaultSleepOnError = (int) this.serviceOptions.DefaultSleepOnError;
             if (this.serviceOptions.ValueProcessors is not null)
             {
+                // They are handed to the scheduler, which adds them to the tasks when it starts.
+                // Before 10.2.0 they were added to the tasks here, where the tasks don't exist yet
+                // (the scheduler loads them on start), so the option had no effect.
                 foreach (var vp in this.serviceOptions.ValueProcessors)
-                    this._scheduler.Tasks?.ValueProcessors?.TryAdd(vp.Key, vp.Value);
+                    this._scheduler.ValueProcessors[vp.Key] = vp.Value;
             }
         }
 

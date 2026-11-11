@@ -115,6 +115,10 @@ All rules compose — every condition must be true for a task to run.
 </sys>
 ```
 
+A task that throws is tried again after a pause: `sleep_on_error` if set, otherwise its `interval`, otherwise 60 seconds (the `DefaultSleepOnError` option). `retry_attempts_on_error` limits the retries; without it there is no limit. When the retries are used up, the task waits for its next scheduled time and starts again with a full count.
+
+Before 10.2.0 a task that threw was tried again on every tick unless both tags were set, and a task that used up its retries did not run again.
+
 ### Variables
 
 Built-in placeholders replaced at runtime:
