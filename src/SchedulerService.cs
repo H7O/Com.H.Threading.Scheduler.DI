@@ -33,7 +33,7 @@ namespace Com.H.Threading.Scheduler
             if (this.serviceOptions.ValueProcessors is not null)
             {
                 // They are handed to the scheduler, which adds them to the tasks when it starts.
-                // Before 10.2.0 they were added to the tasks here, where the tasks don't exist yet
+                // Before 11.0.0 they were added to the tasks here, where the tasks don't exist yet
                 // (the scheduler loads them on start), so the option had no effect.
                 foreach (var vp in this.serviceOptions.ValueProcessors)
                     this._scheduler.ValueProcessors[vp.Key] = vp.Value;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>Com.H.Threading.Scheduler.DI</AssemblyName>
@@ -10,7 +10,7 @@
     <DebugType>embedded</DebugType>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <Version>10.2.0</Version>
+    <Version>11.0.0</Version>
     <Authors>Hussein Al Bayati</Authors>
     <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
     <Copyright>Hussein Al Bayati</Copyright>
@@ -20,18 +20,21 @@
     <RepositoryUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Dependency Injection, Concurrency, Multi-threading, BackgroundService, Containerized</PackageTags>
-    <PackageReleaseNotes>10.2.0
+    <PackageReleaseNotes>11.0.0
 
-* Now on Com.H.Threading.Scheduler 10.2.x, which changes what happens to a task whose handler
+* New: a net11.0 build, for .NET 11. The net8.0, net9.0 and net10.0 builds stay. The major version
+  is 11 because it follows the .NET generation.
+* Now on Com.H.Threading.Scheduler 11.0.x, which changes what happens to a task whose handler
   throws: it is tried again after a pause instead of on every tick, and a task that used up its
   retry_attempts_on_error runs again at its next scheduled time. If you relied on a failing task
   being tried again every second, set sleep_on_error to your tick interval. The scheduler's notes
-  list every change: https://www.nuget.org/packages/Com.H.Threading.Scheduler/10.2.0#releasenotes-body-tab
+  list every change: https://www.nuget.org/packages/Com.H.Threading.Scheduler/11.0.0#releasenotes-body-tab
 * Fixed: SchedulerServiceOptions.ValueProcessors had no effect. The processors are now used, and
   one with the name of a built-in processor replaces it.
 * New: SchedulerServiceOptions.DefaultSleepOnError sets the pause for a failed task that has
   neither sleep_on_error nor an interval (the scheduler's default is 60 seconds).
-* Raised dependency floors to Com.H 10.3.x and Microsoft.Extensions.* 10.0.11.</PackageReleaseNotes>
+* Dependencies: Com.H 11.0.x, and Microsoft.Extensions.DependencyInjection and
+  Microsoft.Extensions.Options 10.0.11 or later (they were 8.0.0 or later).</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 
@@ -50,8 +53,8 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Com.H" Version="[10.3.0, 10.4.0)" />
-    <PackageReference Include="Com.H.Threading.Scheduler" Version="[10.2.0, 10.3.0)" />
+    <PackageReference Include="Com.H" Version="[11.0.0, 11.1.0)" />
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="[11.0.0, 11.1.0)" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.11" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.11" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.400" PrivateAssets="All" />

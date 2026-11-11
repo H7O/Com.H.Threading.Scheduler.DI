@@ -436,7 +436,7 @@ In this example a failing call is made at most 4 times, 5 seconds apart: the fir
 
 An exception thrown by your handler never leaves the scheduler: the `TaskExceptionError` event is raised for it, whether or not the task has retry settings. The error count resets to zero after a successful execution.
 
-> **Changed in 10.2.0.** Before, a task that threw was tried again on every tick (every second by default) unless both tags were set, `sleep_on_error` was ignored without `retry_attempts_on_error`, and a task that used up its tries did not run again. If you relied on the every-tick retry, set `<sleep_on_error>` to your tick interval.
+> **Changed in 11.0.0.** Before, a task that threw was tried again on every tick (every second by default) unless both tags were set, `sleep_on_error` was ignored without `retry_attempts_on_error`, and a task that used up its tries did not run again. If you relied on the every-tick retry, set `<sleep_on_error>` to your tick interval.
 
 ---
 
