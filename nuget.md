@@ -97,13 +97,15 @@ All rules compose — every condition must be true for a task to run.
 | `dates` | Specific dates (pipe-delimited) | `yyyy-MM-dd` | `2026-01-15\|\|2026-07-04` |
 | `doy` | Days of the year | Integer 1–366 | `1,60,120..130` |
 | `eom` | Last day of month | `true` / `false` | `true` |
-| `bom` | First day of month | `true` / `false` | `true` |
+| `bom` | First day of month, the same as `<dom>1</dom>` | `true` / `false` | `true` |
 | `dom` | Days of the month | Integer 1–31 | `1,15,28..31` |
 | `dow` | Days of the week | Weekday names | `Monday,Friday` |
 | `time` | Start time | `HH:mm` | `14:30` |
 | `until_time` | End time | `HH:mm` | `23:00` |
 | `interval` | Milliseconds between runs | Positive integer | `5000` |
 | `ignore_log_on_restart` | Force re-run on restart | `true` / `false` | `true` |
+
+Before 11.0.1 `bom` was read but never acted on, so a task with `<bom>true</bom>` ran every day.
 
 ### Retry on error
 

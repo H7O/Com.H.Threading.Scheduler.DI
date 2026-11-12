@@ -252,7 +252,7 @@ All rules are placed inside the `<sys>` element. When multiple rules are present
 | `dates` | Run only on specific dates (pipe-delimited) | `yyyy-MM-dd` or `MM-dd` | `2026-01-15\|\|2026-07-04` |
 | `doy` | Days of the year (comma or range) | Integer 1–366 | `1,60,120..130` |
 | `eom` | Run on the last day of the month | `true` / `false` | `true` |
-| `bom` | Run on the first day of the month | `true` / `false` | `true` |
+| `bom` | Run on the first day of the month, the same as `<dom>1</dom>` | `true` / `false` | `true` |
 | `dom` | Days of the month (comma or range) | Integer 1–31 | `1,15,28..31` |
 | `dow` | Days of the week (comma-separated, case-insensitive) | Weekday names | `Monday,Wednesday,Friday` |
 | `time` | Time of day to start (or single daily run if no interval) | `HH:mm` or `HH:mm:ss` | `14:30` |
@@ -261,6 +261,10 @@ All rules are placed inside the `<sys>` element. When multiple rules are present
 | `ignore_log_on_restart` | Clear this task's log on scheduler restart, forcing it to re-run | `true` / `false` | `true` |
 
 **Evaluation order:** `enabled` → `not_before` → `not_after` → `dates` → `doy` → `eom`/`bom`/`dom` → `dow` → `time` → `until_time` → `interval` (or once-per-day check).
+
+`eom`, `bom` and `dom` are three rules like any others, so each narrows what the others allow. `<bom>true</bom>` with `<dow>Monday</dow>` runs on a first of the month that is a Monday. `<bom>true</bom>` with `<eom>true</eom>` never runs, because no day is both the first and the last of its month: give each its own task.
+
+> **Fixed in 11.0.1.** Before, `bom` was read but never acted on, so a task with `<bom>true</bom>` ran every day. On an earlier version, write `<dom>1</dom>` for the first day of the month.
 
 ### Range syntax for `dom`, `doy`
 

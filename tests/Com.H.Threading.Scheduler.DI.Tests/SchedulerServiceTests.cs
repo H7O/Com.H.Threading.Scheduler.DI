@@ -88,4 +88,26 @@ public class SchedulerServiceTests : IDisposable
         // At 0, 300 and 600. A tick is 25 ms, so a retry on every tick would be about thirty calls.
         Assert.InRange(seen.Count, 2, 4);
     }
+
+    /// <summary>
+    /// The scheduler this package brings acts on &lt;bom&gt;, the first day of the month. Before
+    /// Com.H.Threading.Scheduler 11.0.1 the tag was passed over and such a task ran every day,
+    /// which is why this package asks for 11.0.1 or later.
+    /// </summary>
+    [Fact]
+    public async Task A_task_for_the_first_day_of_the_month_runs_today_only_if_today_is_that_day()
+    {
+        var before = DateTime.Now;
+        File.WriteAllText(ConfigPath,
+            "<tasks><task><sys><bom>true</bom></sys><name>first</name></task>" +
+            "<task><sys><enabled>true</enabled></sys><name>any</name></task></tasks>");
+        using var services = Build();
+
+        var seen = await RunAsync(services.GetRequiredService<ISchedulerService>(), "name", 400);
+
+        // A run that straddles midnight proves nothing either way.
+        if (DateTime.Now.Day != before.Day) return;
+        Assert.Contains("any", seen);
+        Assert.Equal(before.Day == 1, seen.Contains("first"));
+    }
 }

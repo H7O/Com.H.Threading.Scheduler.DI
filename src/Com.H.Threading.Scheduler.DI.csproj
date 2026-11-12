@@ -10,7 +10,7 @@
     <DebugType>embedded</DebugType>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <Version>11.0.0</Version>
+    <Version>11.0.1</Version>
     <Authors>Hussein Al Bayati</Authors>
     <Description>Dependency injection extension for Com.H.Threading.Scheduler API to facilitate easier usage for applications that utilize IHostBuilder services DI pipeline</Description>
     <Copyright>Hussein Al Bayati</Copyright>
@@ -20,7 +20,15 @@
     <RepositoryUrl>https://github.com/H7O/Com.H.Threading.Scheduler.DI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Dependency Injection, Concurrency, Multi-threading, BackgroundService, Containerized</PackageTags>
-    <PackageReleaseNotes>11.0.0
+    <PackageReleaseNotes>11.0.1
+
+* Now on Com.H.Threading.Scheduler 11.0.1 or later (it was 11.0.0 or later), which fixes bom, the
+  first day of the month. The tag was read and documented but never acted on, so a task with bom
+  set to true ran every day. It now runs on the 1st only. If a task of yours has bom and you came
+  to rely on it running daily, take the tag out.
+* Nothing in this package's own code changed.
+
+11.0.0
 
 * New: a net11.0 build, for .NET 11. The net8.0, net9.0 and net10.0 builds stay. The major version
   is 11 because it follows the .NET generation.
@@ -54,7 +62,8 @@
 
   <ItemGroup>
     <PackageReference Include="Com.H" Version="[11.0.0, 11.1.0)" />
-    <PackageReference Include="Com.H.Threading.Scheduler" Version="[11.0.0, 11.1.0)" />
+    <!-- From 11.0.1, where the scheduler started acting on <bom>. -->
+    <PackageReference Include="Com.H.Threading.Scheduler" Version="[11.0.1, 11.1.0)" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.11" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.11" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.400" PrivateAssets="All" />
